@@ -1,6 +1,8 @@
 #Calculates addition and difference of money in terms of rupee and paise
 
 class Money
+  include Comparable
+
   attr_reader :rupee, :paise
 
   def initialize rupee, paise
@@ -10,6 +12,10 @@ class Money
 
   def to_s
     "#{@rupee} Rs. #{@paise} p"
+  end
+
+  def <=> money
+    @rupee*100 + @paise <=> money.rupee*100 + money.paise
   end
 
 

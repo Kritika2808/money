@@ -33,6 +33,19 @@ describe Money do
 
   end
 
+  context "sorting" do
+
+    it "should sort" do
+      money1 = Money.new(1, 0)
+      money2 = Money.new(2, 0)
+      money3 = Money.new(3, 0)
+      initial_order = [money1, money3, money2]
+      expected_order = [money1, money2, money3]
+      expect(initial_order.sort).to eq(expected_order)
+    end
+
+  end
+
 
   context "equality" do
 
@@ -69,17 +82,14 @@ describe Money do
     it "supports symmetry" do
       money1 = Money.new(2, 3)
       money2 = Money.new(2, 3)
-      expect(money1).to eq(money2)
-      expect(money2).to eq(money1)
+      expect(money1).to eq(money2) and expect(money2).to eq(money1)
     end
 
     it "supports transitivity" do
       money1 = Money.new(2, 3)
       money2 = Money.new(2, 3)
       money3 = Money.new(2, 3)
-      expect(money1).to eq(money2)
-      expect(money2).to eq(money3)
-      expect(money3).to eq(money1)
+      expect(money1).to eq(money2) and expect(money2).to eq(money3) and expect(money3).to eq(money1)
     end
 
   end
