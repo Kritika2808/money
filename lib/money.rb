@@ -15,9 +15,9 @@ class Money
   end
 
   def <=> money
-    @rupee*100 + @paise <=> money.rupee*100 + money.paise
+    return nil if(money.class != self.class)
+   @rupee*100 + @paise <=> money.rupee*100 + money.paise
   end
-
 
   def == second_value
     return true if self.equal?(second_value)

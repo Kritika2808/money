@@ -33,6 +33,29 @@ describe Money do
 
   end
 
+  context "comparator operation" do
+
+    let(:money1) {Money.new(1, 0)}
+    let(:money2) {Money.new(2, 0)}
+
+    it "return 0 for =" do
+      expect(money1 <=> money1).to eq(0)
+    end
+
+    it "return -1 for <" do
+      expect(money1 <=> money2).to eq(-1)
+    end
+
+    it "return 1 for >" do
+      expect(money2 <=> money1).to eq(1)
+    end
+
+    it "return nil for different type" do
+      expect(money1 <=> Object.new).to eq(nil)
+    end
+
+  end
+
   context "sorting" do
 
     it "should sort" do
@@ -42,6 +65,22 @@ describe Money do
       initial_order = [money1, money3, money2]
       expected_order = [money1, money2, money3]
       expect(initial_order.sort).to eq(expected_order)
+    end
+
+  end
+
+  context "compare" do
+
+    it "returns true for <" do
+      money1 = Money.new(1, 5)
+      money2 = Money.new(2, 6)
+      expect(money1 < money2).to eq(true)
+    end
+
+    it "returns true for >" do
+      money1 = Money.new(2, 6)
+      money2 = Money.new(1, 5)
+      expect(money1 > money2).to eq(true)
     end
 
   end
