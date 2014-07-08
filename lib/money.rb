@@ -8,6 +8,10 @@ class Money
     @paise=paise
   end
 
+  def to_s
+    "#{@rupee} Rs. #{@paise} p"
+  end
+
 
   def == second_value
     return true if self.equal?(second_value)

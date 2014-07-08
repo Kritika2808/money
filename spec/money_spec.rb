@@ -24,6 +24,16 @@ describe Money do
 
   end
 
+  context "text format of money" do
+
+    it "prints 2 Rs. 30 p for Money(2,30)" do
+      money = Money.new(2, 30)
+      expect(money.to_s).to eq("2 Rs. 30 p")
+    end
+
+  end
+
+
   context "equality" do
 
     it "should be equal if the object is identical (or same)" do
@@ -55,6 +65,23 @@ describe Money do
       h = {money1 => value}
       expect(h[money2]).to eq(value)
     end
+
+    it "supports symmetry" do
+      money1 = Money.new(2, 3)
+      money2 = Money.new(2, 3)
+      expect(money1).to eq(money2)
+      expect(money2).to eq(money1)
+    end
+
+    it "supports transitivity" do
+      money1 = Money.new(2, 3)
+      money2 = Money.new(2, 3)
+      money3 = Money.new(2, 3)
+      expect(money1).to eq(money2)
+      expect(money2).to eq(money3)
+      expect(money3).to eq(money1)
+    end
+
   end
 end
 
